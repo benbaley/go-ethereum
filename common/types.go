@@ -308,7 +308,9 @@ func (a *Address) SetBytes(b []byte) {
 
 // MarshalText returns the hex representation of a.
 func (a Address) MarshalText() ([]byte, error) {
-	return hexutil.Bytes(a[:]).MarshalText()
+	ma := NewMixedcaseAddress(a)
+	str := ma.String()
+	return []byte(str), nil
 }
 
 // UnmarshalText parses a hash in hex syntax.
