@@ -33,7 +33,7 @@ import (
 // BlockValidator implements Validator.
 type BlockValidator struct {
 	config *params.ChainConfig // Chain configuration options
-	bc     *BlockChain         // Canonical block chain
+	bc     *BlockChain         // Canonical blockchain
 }
 
 // NewBlockValidator returns a new block validator which is safe for re-use

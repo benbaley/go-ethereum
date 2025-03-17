@@ -28,7 +28,7 @@ import (
 // download-progress and delivering (finished) results.
 type resultStore struct {
 	items        []*fetchResult // Downloaded but not yet delivered fetch results
-	resultOffset uint64         // Offset of the first cached fetch result in the block chain
+	resultOffset uint64         // Offset of the first cached fetch result in the blockchain
 
 	// Internal index of first non-completed entry, updated atomically when needed.
 	// If all items are complete, this will equal length(items), so

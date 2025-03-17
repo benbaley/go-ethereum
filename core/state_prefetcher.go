@@ -30,7 +30,7 @@ import (
 // data from disk before the main block processor start executing.
 type statePrefetcher struct {
 	config *params.ChainConfig // Chain configuration options
-	chain  *HeaderChain        // Canonical block chain
+	chain  *HeaderChain        // Canonical blockchain
 }
 
 // newStatePrefetcher initialises a new statePrefetcher.

@@ -54,7 +54,7 @@ var (
 )
 
 // newCanonical creates a chain database, and injects a deterministic canonical
-// chain. Depending on the full flag, it creates either a full block chain or a
+// chain. Depending on the full flag, it creates either a full blockchain or a
 // header only chain. The database and genesis specification for block generation
 // are also returned in case more test blocks are needed later.
 func newCanonical(engine consensus.Engine, n int, full bool, scheme string) (ethdb.Database, *Genesis, *BlockChain, error) {
@@ -127,7 +127,7 @@ func testFork(t *testing.T, blockchain *BlockChain, i, n int, full bool, scheme 
 	// Sanity check that the forked chain can be imported into the original
 	if full {
 		if err := testBlockChainImport(blockChainB, blockchain); err != nil {
-			t.Fatalf("failed to import forked block chain: %v", err)
+			t.Fatalf("failed to import forked blockchain: %v", err)
 		}
 	} else {
 		if err := testHeaderChainImport(headerChainB, blockchain); err != nil {
@@ -510,7 +510,7 @@ func testBrokenChain(t *testing.T, full bool, scheme string) {
 	if full {
 		chain := makeBlockChain(blockchain.chainConfig, blockchain.GetBlockByHash(blockchain.CurrentBlock().Hash()), 5, ethash.NewFaker(), genDb, forkSeed)[1:]
 		if err := testBlockChainImport(chain, blockchain); err == nil {
-			t.Errorf("broken block chain not reported")
+			t.Errorf("broken blockchain not reported")
 		}
 	} else {
 		chain := makeHeaderChain(blockchain.chainConfig, blockchain.CurrentHeader(), 5, ethash.NewFaker(), genDb, forkSeed)[1:]
@@ -682,7 +682,7 @@ func testInsertNonceError(t *testing.T, full bool, scheme string) {
 	}
 }
 
-// Tests that fast importing a block chain produces the same chain data as the
+// Tests that fast importing a blockchain produces the same chain data as the
 // classical full block processing.
 func TestFastVsFullChains(t *testing.T) {
 	testFastVsFullChains(t, rawdb.HashScheme)
@@ -690,7 +690,7 @@ func TestFastVsFullChains(t *testing.T) {
 }
 
 func testFastVsFullChains(t *testing.T, scheme string) {
-	// Configure and generate a sample block chain
+	// Configure and generate a sample blockchain
 	var (
 		key, _  = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		address = crypto.PubkeyToAddress(key.PublicKey)
@@ -817,7 +817,7 @@ func TestLightVsFastVsFullChainHeads(t *testing.T) {
 }
 
 func testLightVsFastVsFullChainHeads(t *testing.T, scheme string) {
-	// Configure and generate a sample block chain
+	// Configure and generate a sample blockchain
 	var (
 		key, _  = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		address = crypto.PubkeyToAddress(key.PublicKey)
@@ -1341,7 +1341,7 @@ func TestEIP155Transition(t *testing.T) {
 }
 
 func testEIP155Transition(t *testing.T, scheme string) {
-	// Configure and generate a sample block chain
+	// Configure and generate a sample blockchain
 	var (
 		key, _     = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		address    = crypto.PubkeyToAddress(key.PublicKey)
@@ -1455,7 +1455,7 @@ func TestEIP161AccountRemoval(t *testing.T) {
 }
 
 func testEIP161AccountRemoval(t *testing.T, scheme string) {
-	// Configure and generate a sample block chain
+	// Configure and generate a sample blockchain
 	var (
 		key, _  = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		address = crypto.PubkeyToAddress(key.PublicKey)
@@ -1692,7 +1692,7 @@ func TestBlockchainRecovery(t *testing.T) {
 }
 
 func testBlockchainRecovery(t *testing.T, scheme string) {
-	// Configure and generate a sample block chain
+	// Configure and generate a sample blockchain
 	var (
 		key, _  = crypto.HexToECDSA("b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f291")
 		address = crypto.PubkeyToAddress(key.PublicKey)

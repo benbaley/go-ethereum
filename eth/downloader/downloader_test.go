@@ -40,7 +40,7 @@ import (
 	"github.com/ethereum/go-ethereum/trie"
 )
 
-// downloadTester is a test simulator for mocking out local block chain.
+// downloadTester is a test simulator for mocking out local blockchain.
 type downloadTester struct {
 	chain      *core.BlockChain
 	downloader *Downloader
@@ -398,7 +398,7 @@ func testCanonSync(t *testing.T, protocol uint, mode SyncMode) {
 	})
 	defer tester.terminate()
 
-	// Create a small enough block chain to download
+	// Create a small enough blockchain to download
 	chain := testChainBase.shorten(blockCacheMaxItems - 15)
 	tester.newPeer("peer", protocol, chain.blocks[1:])
 
@@ -423,7 +423,7 @@ func testThrottling(t *testing.T, protocol uint, mode SyncMode) {
 	tester := newTester(t)
 	defer tester.terminate()
 
-	// Create a long block chain to download and the tester
+	// Create a long blockchain to download and the tester
 	targetBlocks := len(testChainBase.blocks) - 1
 	tester.newPeer("peer", protocol, testChainBase.blocks[1:])
 
@@ -537,7 +537,7 @@ func testMultiProtoSync(t *testing.T, protocol uint, mode SyncMode) {
 	tester := newTesterWithNotification(t, success)
 	defer tester.terminate()
 
-	// Create a small enough block chain to download
+	// Create a small enough blockchain to download
 	chain := testChainBase.shorten(blockCacheMaxItems - 15)
 
 	// Create peers of every type
@@ -575,7 +575,7 @@ func testEmptyShortCircuit(t *testing.T, protocol uint, mode SyncMode) {
 	})
 	defer tester.terminate()
 
-	// Create a block chain to download
+	// Create a blockchain to download
 	chain := testChainBase
 	tester.newPeer("peer", protocol, chain.blocks[1:])
 

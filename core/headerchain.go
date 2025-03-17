@@ -59,7 +59,7 @@ type HeaderChain struct {
 	chainDb       ethdb.Database
 	genesisHeader *types.Header
 
-	currentHeader     atomic.Pointer[types.Header] // Current head of the header chain (maybe above the block chain!)
+	currentHeader     atomic.Pointer[types.Header] // Current head of the header chain (maybe above the blockchain!)
 	currentHeaderHash common.Hash                  // Hash of the current head of the header chain (prevent recomputing all the time)
 
 	headerCache *lru.Cache[common.Hash, *types.Header]

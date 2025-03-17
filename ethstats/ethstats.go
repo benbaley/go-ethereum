@@ -602,7 +602,7 @@ func (s uncleStats) MarshalJSON() ([]byte, error) {
 
 // reportBlock retrieves the current chain head and reports it to the stats server.
 func (s *Service) reportBlock(conn *connWrapper, header *types.Header) error {
-	// Gather the block details from the header or block chain
+	// Gather the block details from the header or blockchain
 	details := s.assembleBlockStats(header)
 
 	// Short circuit if the block detail is not available.

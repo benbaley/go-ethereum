@@ -210,7 +210,7 @@ type txLookup struct {
 // BlockChain represents the canonical chain given a database with a genesis
 // block. The Blockchain manages chain imports, reverts, chain reorganisations.
 //
-// Importing blocks in to the block chain happens according to the set of rules
+// Importing blocks in to the blockchain happens according to the set of rules
 // defined by the two stage Validator. Processing of blocks is done using the
 // Processor which processes the included transaction. The validation of the state
 // is done in the second part of the Validator. Failing results in aborting of
@@ -275,7 +275,7 @@ type BlockChain struct {
 	logger     *tracing.Hooks
 }
 
-// NewBlockChain returns a fully initialised block chain using information
+// NewBlockChain returns a fully initialised blockchain using information
 // available in the database. It initialises the default Ethereum Validator
 // and Processor.
 func NewBlockChain(db ethdb.Database, cacheConfig *CacheConfig, genesis *Genesis, overrides *ChainOverrides, engine consensus.Engine, vmConfig vm.Config, txLookupLimit *uint64) (*BlockChain, error) {
@@ -987,7 +987,7 @@ func (bc *BlockChain) Reset() error {
 // ResetWithGenesisBlock purges the entire blockchain, restoring it to the
 // specified genesis state.
 func (bc *BlockChain) ResetWithGenesisBlock(genesis *types.Block) error {
-	// Dump the entire block chain and purge the caches
+	// Dump the entire blockchain and purge the caches
 	if err := bc.SetHead(0); err != nil {
 		return err
 	}
@@ -1052,7 +1052,7 @@ func (bc *BlockChain) ExportN(w io.Writer, first uint64, last uint64) error {
 	return nil
 }
 
-// writeHeadBlock injects a new head block into the current block chain. This method
+// writeHeadBlock injects a new head block into the current blockchain. This method
 // assumes that the block is indeed a true head. It will also reset the head
 // header and the head snap sync block to this very same block if they are older
 // or if they are on a different side chain.

@@ -78,7 +78,7 @@ type Ethereum struct {
 	discmix *enode.FairMix
 
 	// DB interfaces
-	chainDb ethdb.Database // Block chain database
+	chainDb ethdb.Database // Blockchain database
 
 	eventMux       *event.TypeMux
 	engine         consensus.Engine

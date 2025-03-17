@@ -389,7 +389,7 @@ func (bc *BlockChain) Genesis() *types.Block {
 	return bc.genesisBlock
 }
 
-// GetVMConfig returns the block chain VM config.
+// GetVMConfig returns the blockchain VM config.
 func (bc *BlockChain) GetVMConfig() *vm.Config {
 	return &bc.vmConfig
 }
